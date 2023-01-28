@@ -9,7 +9,7 @@ export default function App() {
 
 
   function addGoals(enteredGoalText) {
-    setCourseGoal(currentCourseGoal => [...currentCourseGoal, { text: enteredGoalText, key: Math.random }])
+    setCourseGoal(currentCourseGoal => [...currentCourseGoal, { text: enteredGoalText, key: (enteredGoalText + Math.random.toString) }])
   };
 
   function deleteGoalHandle(itemId) {
