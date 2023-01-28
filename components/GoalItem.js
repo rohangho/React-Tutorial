@@ -1,10 +1,13 @@
 import { StyleSheet } from "react-native";
-import { Button, FlatList, Text, TextInput, View } from 'react-native';
+import { Button, FlatList, Text, TextInput, View,Pressable } from 'react-native';
 
 function GoalItem(props) {return(
+  <Pressable onPress={props.onDeleteItem.bind(this,props.id)}>
+
     <View style={styles.goalItem}>
     <Text style={styles.goalText}>{props.text}</Text>
-  </View> 
+  </View>  
+  </Pressable>
 )};
 
 export default GoalItem
