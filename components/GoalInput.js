@@ -1,4 +1,4 @@
-import { Button, FlatList, Text, StyleSheet,TextInput, View ,Pressable} from 'react-native';
+import { Button, FlatList, Text, StyleSheet,TextInput, View ,Pressable,Modal} from 'react-native';
 import { useState } from 'react';
 
 function GoalInput(props)
@@ -12,17 +12,29 @@ function GoalInput(props)
       function addGoals() {
         props.onAddGoal(enteredGoalText)
         setEnteredGoalText('')
+        cancelModalfunc()
       };
 
+      function cancelModalfunc()
+      {
+        props.cancelModal()
+      }
+
     return (
+      <Modal visible={props.isVisible} animationType ="slide">
         <View style={styles.inputContainer}>
         <TextInput placeholder='YOur Goal'
           style={styles.textInputStyle}
           onChangeText={goalHandler} 
           value={enteredGoalText}/>
-        <Button title='Add  Goal'
+       
+          <View style = {styles.buttonDirection}>
+          <Button title='Add_Goal'
           onPress={addGoals} />
-      </View>
+          <Button title='Cancel' onPress={cancelModalfunc}/>
+          </View>
+          </View>
+      </Modal>
 
     )
 };
@@ -33,10 +45,8 @@ export default GoalInput
 const styles = StyleSheet.create({
     inputContainer: {
         flex: 1,
-        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingBottom: 24,
+        justifyContent: 'center',
         borderBottomWidth: 2,
         borderBottomColor: "#cccccc"
       },
@@ -47,4 +57,7 @@ const styles = StyleSheet.create({
         marginRight: 8,
         padding: 2
       },
+      buttonDirection:{
+        flexDirection : 'row'
+      }
 })
